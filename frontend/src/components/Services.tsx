@@ -1,57 +1,73 @@
-import { Siren, Home, Scale, HeartHandshake, Users, BookOpen } from "lucide-react";
-import { Card } from "./Card";
+import { Siren, Home, Scale, MessageCircle, Users, ArrowRight } from "lucide-react";
 
 const services = [
   {
     icon: <Siren size={22} />,
-    title: "Emergency Reporting",
-    desc: "Submit reports, share your location, describe what's happening, and request immediate assistance.",
+    title: "Emergency SOS",
+    desc: "Trigger an alert and get immediate help from trusted responders.",
+    color: "umber",
   },
   {
     icon: <Home size={22} />,
-    title: "Shelter Finder",
-    desc: "Search nearby shelters, check real-time availability, and request placement directly.",
+    title: "Safe Shelters",
+    desc: "Find nearby verified shelters and safe accommodation.",
+    color: "navy",
   },
   {
     icon: <Scale size={22} />,
     title: "Legal Assistance",
-    desc: "Access legal resources, request consultations, and track your case with a legal professional.",
+    desc: "Connect with legal aid organizations and get justice support.",
+    color: "gold",
   },
   {
-    icon: <HeartHandshake size={22} />,
+    icon: <MessageCircle size={22} />,
     title: "Counseling Support",
-    desc: "Book sessions, access mental health resources, and chat with licensed counselors.",
+    desc: "Access professional counselors and mental health resources.",
+    color: "navy",
   },
   {
     icon: <Users size={22} />,
-    title: "Volunteer Network",
-    desc: "Register your skills and availability to join community outreach and awareness programs.",
-  },
-  {
-    icon: <BookOpen size={22} />,
-    title: "Resource Library",
-    desc: "Safety guides, legal information, and educational material you can read at your own pace.",
+    title: "Community Reporting",
+    desc: "Report abuse or suspicious activities anonymously and securely.",
+    color: "umber",
   },
 ];
 
 export function Services() {
   return (
     <section id="services" className="bg-cream dark:bg-charcoal transition-colors">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-4 pb-16 lg:pt-8 lg:pb-24">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold">
-            What we offer
-          </p>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-dark-gray dark:text-white">
-            One platform, every path to safety
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-16 pb-12 lg:pt-20 lg:pb-16">
+        <div className="text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-navy dark:text-white">
+            Our Services
           </h2>
+          <div className="mt-3 mx-auto h-1 w-14 rounded-full bg-gold" />
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {services.map((service) => (
-            <Card key={service.title} title={service.title} icon={service.icon}>
-              <p>{service.desc}</p>
-            </Card>
+            <div key={service.title} className="flex flex-col">
+              
+              <div className={`h-12 w-12 rounded-full flex items-center justify-center ${
+                service.color === "umber" ? "bg-umber text-white" :
+                service.color === "navy" ? "bg-navy text-white" :
+                "bg-gold text-dark-gray"
+              }`}>
+                {service.icon}
+              </div>
+
+              <h3 className="mt-4 font-semibold text-dark-gray dark:text-white">
+                {service.title}
+              </h3>
+              <p className="mt-2 text-sm text-dark-gray/70 dark:text-white/70 leading-relaxed flex-1">
+                {service.desc}
+              </p>
+
+              <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-umber dark:text-gold hover:gap-2 transition-all">
+                Learn more
+                <ArrowRight size={14} />
+              </a>
+            </div>
           ))}
         </div>
       </div>

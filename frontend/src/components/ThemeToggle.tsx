@@ -1,32 +1,24 @@
-import { Sun, Moon, Monitor } from "lucide-react";
-import { useTheme, type Theme } from "../contexts/ThemeContext";
-
-const options: { value: Theme; icon: typeof Sun; label: string }[] = [
-  { value: "light", icon: Sun, label: "Light mode" },
-  { value: "dark", icon: Moon, label: "Dark mode" },
-  { value: "system", icon: Monitor, label: "Match system" },
-];
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-full border border-dark-gray/10 dark:border-white/10 bg-white dark:bg-navy p-1">
-      {options.map(({ value, icon: Icon, label }) => (
-        <button
-          key={value}
-          onClick={() => setTheme(value)}
-          aria-label={label}
-          aria-pressed={theme === value}
-          className={`p-2 rounded-full transition-colors ${
-            theme === value
-              ? "bg-gold text-dark-gray"
-              : "text-dark-gray/60 dark:text-white/60 hover:bg-dark-gray/5 dark:hover:bg-white/5"
-          }`}
-        >
-          <Icon size={16} />
-        </button>
-      ))}
-    </div>
+    <button
+      onClick={toggleTheme}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={isDark}
+      className="relative inline-flex h-7 w-14 items-center rounded-full bg-dark-gray/10 dark:bg-white/10 px-1 transition-colors"
+    >
+      <Sun size={13} className="absolute left-1.5 text-gold" />
+      <Moon size={13} className="absolute right-1.5 text-white/80" />
+      <span
+        className={`relative z-10 h-5 w-5 rounded-full bg-white dark:bg-navy shadow-sm transition-transform duration-200 ${
+          isDark ? "translate-x-7" : "translate-x-0"
+        }`}
+      />
+    </button>
   );
 }

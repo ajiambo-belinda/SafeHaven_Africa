@@ -1,36 +1,39 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import logo from "../assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
-import { Button } from "./Button";
 
 const links = [
-  { label: "About", href: "#about" },
+  { label: "Home", href: "#hero" },
+  { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Resources", href: "#resources" },
-  { label: "Get involved", href: "#get-involved" },
-  { label: "Contact", href: "#contact" },
+  { label: "Get Involved", href: "#get-involved" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-cream/90 dark:bg-charcoal/90 backdrop-blur border-b border-dark-gray/10 dark:border-white/10">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
-        <img src={logo} alt="SafeHaven Africa" className="h-10 w-auto" />
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-charcoal/95 backdrop-blur border-b border-dark-gray/10 dark:border-white/10">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 h-20 flex items-center justify-between gap-4">
+        <img src={logo} alt="SafeHaven Africa" className="h-11 w-auto" />
 
         <nav className="hidden lg:flex items-center gap-7">
-          {links.map((link) => (
-            <a key={link.label} href={link.href} className="text-sm font-medium text-dark-gray/70 dark:text-white/70 hover:text-navy dark:hover:text-gold transition-colors">
+          {links.map((link, index) => (
+            <a key={link.label} href={link.href} className={`text-sm font-medium pb-1 border-b-2 transition-colors ${index === 0 ? "text-umber dark:text-gold border-umber dark:border-gold" : "text-dark-gray/70 dark:text-white/70 border-transparent hover:text-umber dark:hover:text-gold"}`}>
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-4">
           <ThemeToggle />
-          <Button variant="primary">Get help now</Button>
+          <a href="#report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+            <Phone size={15} />
+            Get Help Now
+          </a>
         </div>
 
         <button
@@ -49,9 +52,12 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <div className="flex items-center gap-3 pt-2">
+          <div className="flex items-center gap-4 pt-2">
             <ThemeToggle />
-            <Button variant="primary">Get help now</Button>
+            <a href="#report" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold">
+              <Phone size={15} />
+              Get Help Now
+            </a>
           </div>
         </div>
       )}

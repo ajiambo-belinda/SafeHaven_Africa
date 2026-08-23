@@ -1,39 +1,76 @@
+import { Heart, UserPlus, Shield, Home, Scale, HeartHandshake } from "lucide-react";
 import heroPhoto from "../assets/map.png";
-import { Button } from "./Button";
+
+const floatingCards = [
+  { icon: <Shield size={18} />, title: "Emergency SOS", subtitle: "24/7 Support", color: "umber" },
+  { icon: <Home size={18} />, title: "Safe Shelters", subtitle: "500+ Verified", color: "navy" },
+  { icon: <Scale size={18} />, title: "Legal Assistance", subtitle: "Expert Support", color: "gold" },
+  { icon: <HeartHandshake size={18} />, title: "Counseling", subtitle: "Care & Healing", color: "navy" },
+];
 
 export function Hero() {
   return (
-    <section id="hero" className="bg-cream dark:bg-charcoal transition-colors">
-     <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+    <section
+      id="hero"
+      className="bg-[linear-gradient(135deg,#2E2E2E_0%,#5A4636_40%,#D89A2B_100%)] dark:bg-charcoal transition-colors"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span className="inline-block text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-3 py-1.5 rounded-full">
-            Your safety. Your voice. Our mission.
-          </span>
-
-          <h1 className="mt-6 text-4xl sm:text-5xl font-bold leading-tight text-dark-gray dark:text-white">
-            You're not alone.
+          <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
+            <span className="text-white">A SAFE PLACE.</span>
             <br />
-            Help is closer than you think.
+            <span className="text-gold">A STRONGER FUTURE.</span>
           </h1>
 
-          <p className="mt-6 text-lg text-dark-gray/70 dark:text-white/70 max-w-xl leading-relaxed">
-            SafeHaven Africa connects survivors of violence, abuse, and crisis
-            to nearby shelters, legal support, and counselors — quickly,
-            privately, and on any device.
+          <p className="mt-6 text-white/70 max-w-xl leading-relaxed">
+            SafeHaven Africa connects survivors of violence and vulnerable
+            communities to trusted support, safe shelters, legal aid, and
+            mental health services across Africa.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button variant="primary">Report an emergency</Button>
-            <Button variant="outline">Find a shelter near me</Button>
+            <a href="#report" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+              <Heart size={16} />
+              Get Help Now
+            </a>
+            <a href="#get-involved" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition-colors">
+              <UserPlus size={16} />
+              Become a Volunteer
+            </a>
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end">
+        <div className="relative flex justify-center">
           <img
             src={heroPhoto}
             alt="A mother and child, representing the communities SafeHaven Africa supports"
-            className="w-full max-w-md rounded-3xl"
+            className="w-full max-w-md"
+            style={{
+              maskImage: "radial-gradient(ellipse 65% 70% at center, black 35%, transparent 85%)",
+              WebkitMaskImage: "radial-gradient(ellipse 65% 70% at center, black 35%, transparent 85%)",
+            }}
           />
+
+          <div className="hidden lg:flex flex-col gap-3 absolute -right-6 top-1/2 -translate-y-1/2">
+            {floatingCards.map((card) => (
+              <div
+                key={card.title}
+                className="flex items-center gap-3 bg-white rounded-xl shadow-lg px-4 py-3 w-56"
+              >
+                <div className={`h-9 w-9 rounded-full flex items-center justify-center shrink-0 ${
+                  card.color === "umber" ? "bg-umber text-white" :
+                  card.color === "navy" ? "bg-navy text-white" :
+                  "bg-gold text-dark-gray"
+                }`}>
+                  {card.icon}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-dark-gray">{card.title}</p>
+                  <p className="text-xs text-dark-gray/60">{card.subtitle}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
