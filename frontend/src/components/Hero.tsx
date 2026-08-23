@@ -17,7 +17,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
-            <span className="text-white">A SAFE PLACE.</span>
+            <span className="text-navy">A SAFE PLACE.</span>
             <br />
             <span className="text-gold">A STRONGER FUTURE.</span>
           </h1>
@@ -40,22 +40,23 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative flex justify-center">
+        <div className="flex items-center justify-center gap-4">
           <img
             src={heroPhoto}
             alt="A mother and child, representing the communities SafeHaven Africa supports"
-            className="w-full max-w-md"
+            className="w-full max-w-sm"
             style={{
               maskImage: "radial-gradient(ellipse 65% 70% at center, black 35%, transparent 85%)",
               WebkitMaskImage: "radial-gradient(ellipse 65% 70% at center, black 35%, transparent 85%)",
             }}
           />
 
-          <div className="hidden lg:flex flex-col gap-3 absolute -right-6 top-1/2 -translate-y-1/2">
+          <div className="hidden lg:flex flex-col gap-3">
             {floatingCards.map((card) => (
-              <div
-                key={card.title}
-                className="flex items-center gap-3 bg-white rounded-xl shadow-lg px-4 py-3 w-56"
+              
+               <a key={card.title}
+                href="#services"
+                className="flex items-center gap-3 bg-white rounded-xl shadow-lg px-4 py-3 w-56 hover:shadow-xl hover:-translate-y-0.5 transition-all"
               >
                 <div className={`h-9 w-9 rounded-full flex items-center justify-center shrink-0 ${
                   card.color === "umber" ? "bg-umber text-white" :
@@ -65,10 +66,11 @@ export function Hero() {
                   {card.icon}
                 </div>
                 <div>
+                  
                   <p className="text-sm font-semibold text-dark-gray">{card.title}</p>
                   <p className="text-xs text-dark-gray/60">{card.subtitle}</p>
                 </div>
-              </div>
+                </a>
             ))}
           </div>
         </div>

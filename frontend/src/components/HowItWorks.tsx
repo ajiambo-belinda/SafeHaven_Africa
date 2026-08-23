@@ -1,46 +1,69 @@
+import { FileEdit, Users, HeartHandshake, ArrowRight } from "lucide-react";
+
 const steps = [
   {
-    number: "01",
-    title: "Reach out",
-    desc: "Submit an emergency report or browse resources — no account required to get started.",
+    number: 1,
+    icon: <FileEdit size={24} />,
+    title: "Request Help",
+    desc: "Submit a request or trigger an SOS when you need immediate assistance.",
+    color: "umber",
   },
   {
-    number: "02",
-    title: "Get matched",
-    desc: "A case is created and routed to the nearest available responder, shelter, or counselor.",
+    number: 2,
+    icon: <Users size={24} />,
+    title: "Get Matched",
+    desc: "We match you with the right resources, shelters, and support services.",
+    color: "navy",
   },
   {
-    number: "03",
-    title: "Receive support",
-    desc: "Track your case, message your responder, and access ongoing legal or counseling support.",
+    number: 3,
+    icon: <HeartHandshake size={24} />,
+    title: "Receive Support",
+    desc: "Get the help you need and ongoing support until you are safe and stable.",
+    color: "gold",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="bg-navy dark:bg-charcoal transition-colors">
+    <section className="bg-cream dark:bg-charcoal transition-colors">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold">
-            How it works
-          </p>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-white">
-            Three steps between you and support
+        <div className="text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-navy dark:text-white">
+            How It Works
           </h2>
+          <div className="mt-3 mx-auto h-1 w-14 rounded-full bg-gold" />
         </div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-10">
-          {steps.map((step) => (
-            <div key={step.number}>
-              <span className="text-5xl font-bold text-gold/40">
-  {step.number}
-</span>
-              <h3 className="mt-2 text-xl font-semibold text-white">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm text-white/60 leading-relaxed">
-                {step.desc}
-              </p>
+        <div className="mt-12 flex flex-col lg:flex-row items-start gap-8 lg:gap-3">
+          {steps.map((step, index) => (
+            <div key={step.number} className="flex items-center gap-3 lg:flex-1">
+              <div className="flex items-start gap-4">
+                <div className="relative shrink-0">
+                  <div className={`h-14 w-14 rounded-full flex items-center justify-center ${
+                    step.color === "umber" ? "bg-umber text-white" :
+                    step.color === "navy" ? "bg-navy text-white" :
+                    "bg-gold text-dark-gray"
+                  }`}>
+                    {step.icon}
+                  </div>
+                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-navy dark:bg-gold text-white dark:text-dark-gray text-[11px] font-bold flex items-center justify-center">
+                    {step.number}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-dark-gray dark:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-dark-gray/70 dark:text-white/70 leading-relaxed max-w-[200px]">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+
+              {index < steps.length - 1 && (
+                <ArrowRight className="hidden lg:block text-dark-gray/30 dark:text-white/30 shrink-0 mx-2" size={20} />
+              )}
             </div>
           ))}
         </div>

@@ -46,7 +46,7 @@ export function Services() {
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {services.map((service) => (
-            <div key={service.title} className="flex flex-col">
+            <div key={service.title} className="rounded-2xl border border-dark-gray/10 dark:border-white/10 bg-white dark:bg-navy p-6 flex flex-col shadow-sm hover:shadow-md transition-shadow">
               
               <div className={`h-12 w-12 rounded-full flex items-center justify-center ${
                 service.color === "umber" ? "bg-umber text-white" :
