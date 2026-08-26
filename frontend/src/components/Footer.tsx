@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaTiktok } from "react-icons/fa6";
 import logo from "../assets/logo.png";
@@ -46,7 +47,10 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm hover:text-white transition-colors">
+                    
+                      <a href={col.title === "Support" ? "#services" : "#"}
+                      className="text-sm hover:text-white transition-colors"
+                    >
                       {link}
                     </a>
                   </li>
@@ -71,16 +75,16 @@ export function Footer() {
                 Nairobi, Kenya
               </li>
             </ul>
-            <a href="#report" className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+            <Link to="/report" className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
               <Phone size={14} />
               Get Help Now
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10 text-center text-xs text-white/40">
-  <p>{'\u00A9'} {new Date().getFullYear()} SafeHaven Africa. All rights reserved.</p>
-</div>
+          <p>{'\u00A9'} {new Date().getFullYear()} SafeHaven Africa. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );

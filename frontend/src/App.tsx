@@ -1,22 +1,22 @@
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { Stats } from "./components/Stats";
-import { Services } from "./components/Services";
-import { HowItWorks } from "./components/HowItWorks";
-import { Impact } from "./components/Impact";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Report } from "./pages/Report";
+import { Register } from "./pages/Register";
+import { Overview } from "./pages/dashboard/Overview";
 
 function App() {
   return (
-    <div className="min-h-screen bg-cream dark:bg-charcoal transition-colors">
-      <Navbar />
-      <Hero />
-      <Stats />
-      <Services />
-      <HowItWorks />
-      <Impact />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-cream dark:bg-charcoal transition-colors">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Overview />} />
+
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

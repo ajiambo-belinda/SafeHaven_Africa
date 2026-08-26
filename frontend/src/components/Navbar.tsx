@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "../assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
@@ -30,10 +31,10 @@ export function Navbar() {
 
         <div className="hidden lg:flex items-center gap-4">
           <ThemeToggle />
-          <a href="#report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
-            <Phone size={15} />
-            Get Help Now
-          </a>
+          <Link to="/report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+  <Phone size={15} />
+  Get Help Now
+</Link>
         </div>
 
         <button
@@ -54,10 +55,10 @@ export function Navbar() {
           ))}
           <div className="flex items-center gap-4 pt-2">
             <ThemeToggle />
-            <a href="#report" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold">
-              <Phone size={15} />
-              Get Help Now
-            </a>
+            <Link to="/report" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold">
+  <Phone size={15} />
+  Get Help Now
+</Link>
           </div>
         </div>
       )}
