@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import heroPhoto from "../../assets/map.png";
 import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, ShieldAlert, Home, Scale, HeartHandshake, Users,
@@ -32,12 +33,12 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
         className={`${sidebarOpen ? "w-64" : "w-0 lg:w-20"} shrink-0 bg-navy transition-all duration-200 overflow-hidden flex flex-col`}
       >
         <div className="h-20 flex items-center px-5 bg-white">
-  <Link to="/" className="flex items-center gap-2">
-    <img src={logo} alt="SafeHaven Africa" className="h-9 w-auto" />
-  </Link>
-</div>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} alt="SafeHaven Africa" className="h-9 w-auto" />
+          </Link>
+        </div>
 
-        <nav className="flex-1 px-4 pt-6 pb-2 space-y-1.5 overflow-y-auto">
+        <nav className="px-4 pt-6 pb-2 space-y-1.5 overflow-y-auto">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
@@ -54,20 +55,20 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
                 <Icon size={18} className="shrink-0" />
                 <span className={`${sidebarOpen ? "inline" : "hidden lg:hidden"}`}>{item.label}</span>
                 {item.badge && sidebarOpen && (
-  <span className={`ml-auto text-xs font-semibold h-5 min-w-5 px-1 rounded-full flex items-center justify-center ${
-    item.label === "Emergency Requests"
-      ? "bg-alert-red text-white"
-      : "bg-gold text-dark-gray"
-  }`}>
-    {item.badge}
-  </span>
-)}
+                  <span className={`ml-auto text-xs font-semibold h-5 min-w-5 px-1 rounded-full flex items-center justify-center ${
+                    item.label === "Emergency Requests"
+                      ? "bg-alert-red text-white"
+                      : "bg-gold text-dark-gray"
+                  }`}>
+                    {item.badge}
+                  </span>
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {sidebarOpen && (
+                {sidebarOpen && (
           <div className="m-3 p-4 rounded-xl bg-umber/90">
             <p className="text-sm font-semibold text-white">Need Immediate Assistance?</p>
             <p className="mt-1.5 text-xs text-white/80 leading-relaxed">
@@ -77,6 +78,17 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
               <Radio size={14} />
               Send SOS Now
             </button>
+          </div>
+        )}
+
+        {sidebarOpen && (
+          <div className="flex-1 relative overflow-hidden">
+            <img
+              src={heroPhoto}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover object-top opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
           </div>
         )}
       </aside>

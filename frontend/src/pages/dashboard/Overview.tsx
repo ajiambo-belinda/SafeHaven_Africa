@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { DashboardLayout } from "../../components/dashboard/DashboardLayout";
-import { ShieldAlert, Home, Users, ShieldCheck, Calendar, UserPlus, UserCheck, UserX } from "lucide-react";
+import { SafetyMap } from "../../components/dashboard/SafetyMap";
+import { ShieldAlert, Home, Users, ShieldCheck, Calendar, UserPlus, UserCheck, UserX, PlusCircle, BadgeCheck, Bell, FileText, MessageCircle, BarChart2 } from "lucide-react";
 
 const stats = [
   {
-    icon: <ShieldAlert size={22} />,
+    icon: <ShieldAlert size={20} />,
     value: "12",
     label: "Active Emergency Requests",
     change: "20%",
@@ -11,7 +13,7 @@ const stats = [
     color: "umber",
   },
   {
-    icon: <Home size={22} />,
+    icon: <Home size={20} />,
     value: "48",
     label: "Available Shelters",
     change: "15%",
@@ -19,7 +21,7 @@ const stats = [
     color: "navy",
   },
   {
-    icon: <Users size={22} />,
+    icon: <Users size={20} />,
     value: "320",
     label: "Active Volunteers",
     change: "18%",
@@ -27,7 +29,7 @@ const stats = [
     color: "gold",
   },
   {
-    icon: <ShieldCheck size={22} />,
+    icon: <ShieldCheck size={20} />,
     value: "96%",
     label: "Community Safety Score",
     change: "5%",
@@ -38,16 +40,16 @@ const stats = [
 
 const recentRequests = [
   { name: "Domestic Violence Support", location: "Nairobi, Kenya", urgency: "High", time: "5 mins ago", avatarSeed: "request1" },
-  { name: "Shelter Request", location: "Kisumu, Kenya", urgency: "Medium", time: "15 mins ago", avatarSeed: "request2" },
-  { name: "Legal Assistance", location: "Mombasa, Kenya", urgency: "Low", time: "30 mins ago", avatarSeed: "request3" },
-  { name: "Counseling Support", location: "Eldoret, Kenya", urgency: "Medium", time: "1 hour ago", avatarSeed: "request4" },
+  { name: "Shelter Request", location: "Lagos, Nigeria", urgency: "Medium", time: "15 mins ago", avatarSeed: "request2" },
+  { name: "Legal Assistance", location: "Accra, Ghana", urgency: "Low", time: "30 mins ago", avatarSeed: "request3" },
+  { name: "Counseling Support", location: "Kampala, Uganda", urgency: "Medium", time: "1 hour ago", avatarSeed: "request4" },
 ];
 
 const shelters = [
   { name: "Nairobi Safe House", location: "Nairobi, Kenya", beds: 12 },
-  { name: "Kisumu Safe Shelter", location: "Kisumu, Kenya", beds: 4 },
-  { name: "Mombasa Shelter", location: "Mombasa, Kenya", beds: 8 },
-  { name: "Eldoret Safe House", location: "Eldoret, Kenya", beds: 2 },
+  { name: "Kigali Safe Shelter", location: "Kigali, Rwanda", beds: 4 },
+  { name: "Johannesburg Shelter", location: "Johannesburg, South Africa", beds: 8 },
+  { name: "Cairo Safe House", location: "Cairo, Egypt", beds: 2 },
 ];
 
 const reportBreakdown = [
@@ -64,7 +66,18 @@ const volunteerActivity = [
   { icon: <UserX size={18} />, label: "Pending Verification", value: 7, change: "3%", trend: "down" },
 ];
 
+const quickActions = [
+  { icon: <PlusCircle size={16} />, label: "Add New Shelter", color: "navy", path: null },
+  { icon: <BadgeCheck size={16} />, label: "Verify Volunteer", color: "umber", path: null },
+  { icon: <Bell size={16} />, label: "Emergency Alert", highlight: true, color: "alert-red", path: "/report" },
+  { icon: <FileText size={16} />, label: "Create Report", color: "navy", path: "/report" },
+  { icon: <MessageCircle size={16} />, label: "Send Message", color: "gold", path: null },
+  { icon: <BarChart2 size={16} />, label: "View Analytics", color: "umber", path: null },
+];
+
 export function Overview() {
+  const navigate = useNavigate();
+
   const today = new Date().toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -79,7 +92,7 @@ export function Overview() {
             Welcome back, Belinda Ajiambo 👋
           </h1>
           <p className="mt-1.5 text-black dark:text-black">
-            Together, we can build safer communities.
+            Together, we can save Africans.
           </p>
           <p className="mt-3 flex items-center gap-1.5 text-sm text-dark-gray/50 dark:text-white/50">
             <Calendar size={14} />
@@ -116,17 +129,21 @@ export function Overview() {
 
       <div className="mt-6 grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
-          <p className="text-dark-gray/50 dark:text-white/50 text-sm">
-            Safety Map Overview — coming next
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-semibold text-dark-gray dark:text-white">
+              Safety Map Overview
+            </h2>
+            <span className="text-xs text-dark-gray/40 dark:text-white/40">All Regions</span>
+          </div>
+          <SafetyMap />
         </div>
 
         <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-dark-gray dark:text-white">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="font-semibold text-sm text-dark-gray dark:text-white leading-snug">
               Recent Emergency Requests
             </h2>
-            <a href="#" className="text-sm font-medium text-umber dark:text-gold hover:underline">
+            <a href="#" className="self-start sm:self-auto shrink-0 text-xs font-semibold text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-umber/20 dark:hover:bg-gold/20 transition-colors">
               View all
             </a>
           </div>
@@ -135,10 +152,10 @@ export function Overview() {
             {recentRequests.map((req) => (
               <div key={req.name} className="flex items-start gap-3">
                 <img
-  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${req.avatarSeed}`}
-  alt=""
-  className="h-10 w-10 rounded-full bg-dark-gray/10 dark:bg-white/10 shrink-0"
-/>
+                  src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${req.avatarSeed}`}
+                  alt=""
+                  className="h-10 w-10 rounded-full bg-dark-gray/10 dark:bg-white/10 shrink-0"
+                />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-dark-gray dark:text-white truncate">
                     {req.name}
@@ -162,13 +179,13 @@ export function Overview() {
               </div>
             ))}
           </div>
-                </div>
+        </div>
       </div>
 
       <div className="mt-6 grid lg:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-dark-gray dark:text-white">
+            <h2 className="font-semibold text-dark-grey dark:text-white">
               Shelter Availability
             </h2>
             <a href="#" className="text-sm font-medium text-umber dark:text-gold hover:underline">
@@ -265,6 +282,35 @@ export function Overview() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      <div className="mt-6 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <h2 className="font-semibold text-dark-gray dark:text-white mb-4">
+          Quick Actions
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
+          {quickActions.map((action) => (
+            <button
+              key={action.label}
+              onClick={() => action.path && navigate(action.path)}
+              className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-xl border text-xs font-medium transition-all hover:-translate-y-0.5 hover:shadow-md ${
+                action.highlight
+                  ? "border-umber/30 bg-umber/10 text-umber dark:text-gold"
+                  : "border-dark-gray/10 dark:border-white/10 text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5"
+              }`}
+            >
+              <span className={`shrink-0 h-7 w-7 rounded-full flex items-center justify-center ${
+                action.color === "navy" ? "bg-navy text-white" :
+                action.color === "umber" ? "bg-umber text-white" :
+                action.color === "gold" ? "bg-gold text-dark-gray" :
+                "bg-alert-red text-white"
+              }`}>
+                {action.icon}
+              </span>
+              <span className="whitespace-nowrap truncate">{action.label}</span>
+            </button>
+          ))}
         </div>
       </div>
     </DashboardLayout>
