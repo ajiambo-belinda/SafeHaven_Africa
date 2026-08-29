@@ -8,6 +8,13 @@ import { Shelters } from "./pages/dashboard/Shelters";
 import { Volunteers } from "./pages/dashboard/Volunteers";
 import { LegalAid } from "./pages/dashboard/LegalAid";
 import { Counseling } from "./pages/dashboard/Counseling";
+import { CommunityReports } from "./pages/dashboard/CommunityReports";
+import { Users } from "./pages/dashboard/Users";
+import {Analytics} from "./pages/dashboard/Analytics";
+import {Resources} from "./pages/dashboard/Resources";
+import {Messages} from "./pages/dashboard/Messages";
+import {Settings} from "./pages/dashboard/Settings";
+
 
 function App() {
   return (
@@ -23,7 +30,12 @@ function App() {
           <Route path="/dashboard/volunteers" element={<Volunteers />} />
           <Route path="/dashboard/legal-aid" element={<LegalAid />} />
           <Route path="/dashboard/counseling" element={<Counseling />} />
-
+          <Route path="/dashboard/community-reports" element={<CommunityReports />} />
+          <Route path="/dashboard/users" element={<Users/>} />
+          <Route path="/dashboard/analytics" element={<Analytics/>} />
+          <Route path="/dashboard/resources" element={<Resources />} />
+          <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
         </Routes>
       </div>
     </BrowserRouter>
