@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import heroPhoto from "../../assets/map.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, ShieldAlert, Home, Scale, HeartHandshake, Users,
   FileText, UserCog, BarChart3, BookOpen, MessageSquare, Settings,
@@ -25,7 +25,15 @@ const navItems = [
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="min-h-screen bg-cream dark:bg-charcoal transition-colors flex">
@@ -121,16 +129,32 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
               <Mail size={19} />
               <span className="absolute top-1 right-1 h-4 min-w-4 px-1 rounded-full bg-umber text-white text-[10px] font-bold flex items-center justify-center">2</span>
             </button>
-            <button className="flex items-center gap-2.5">
-              <div className="h-9 w-9 rounded-full bg-umber/20 text-umber dark:text-gold flex items-center justify-center text-sm font-semibold">
-                BA
-              </div>
-              <div className="hidden sm:block text-left">
-                <p className="text-sm font-semibold text-dark-gray dark:text-white leading-tight">Belinda Ajiambo</p>
-                <p className="text-xs text-dark-gray/50 dark:text-white/50 leading-tight">Administrator</p>
-              </div>
-              <ChevronDown size={14} className="text-dark-gray/50 dark:text-white/50 hidden sm:block" />
-            </button>
+            <div className="relative">
+  <button
+    onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+    className="flex items-center gap-2.5"
+  >
+    <div className="h-9 w-9 rounded-full bg-umber/20 text-umber dark:text-gold flex items-center justify-center text-sm font-semibold">
+      {user?.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase() || "U"}
+    </div>
+    <div className="hidden sm:block text-left">
+      <p className="text-sm font-semibold text-dark-gray dark:text-white leading-tight">{user?.name || "User"}</p>
+      <p className="text-xs text-dark-gray/50 dark:text-white/50 leading-tight">{user?.role || "Member"}</p>
+    </div>
+    <ChevronDown size={14} className="text-dark-gray/50 dark:text-white/50 hidden sm:block" />
+  </button>
+
+  {profileMenuOpen && (
+    <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-navy rounded-xl border border-dark-gray/10 dark:border-white/10 shadow-lg py-2 z-50">
+      <button
+        onClick={handleLogout}
+        className="w-full text-left px-4 py-2 text-sm text-alert-red hover:bg-dark-gray/5 dark:hover:bg-white/5 transition-colors"
+      >
+        Log Out
+      </button>
+    </div>
+  )}
+</div>
           </div>
         </header>
 

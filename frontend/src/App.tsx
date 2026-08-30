@@ -10,11 +10,12 @@ import { LegalAid } from "./pages/dashboard/LegalAid";
 import { Counseling } from "./pages/dashboard/Counseling";
 import { CommunityReports } from "./pages/dashboard/CommunityReports";
 import { Users } from "./pages/dashboard/Users";
-import {Analytics} from "./pages/dashboard/Analytics";
-import {Resources} from "./pages/dashboard/Resources";
-import {Messages} from "./pages/dashboard/Messages";
-import {Settings} from "./pages/dashboard/Settings";
-
+import { Analytics } from "./pages/dashboard/Analytics";
+import { Resources } from "./pages/dashboard/Resources";
+import { Messages } from "./pages/dashboard/Messages";
+import { Settings } from "./pages/dashboard/Settings";
+import { Login } from "./pages/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -24,18 +25,19 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/report" element={<Report />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Overview />} />
-          <Route path="/dashboard/emergency-requests" element={<EmergencyRequests />} />
-          <Route path="/dashboard/shelters" element={<Shelters />} />
-          <Route path="/dashboard/volunteers" element={<Volunteers />} />
-          <Route path="/dashboard/legal-aid" element={<LegalAid />} />
-          <Route path="/dashboard/counseling" element={<Counseling />} />
-          <Route path="/dashboard/community-reports" element={<CommunityReports />} />
-          <Route path="/dashboard/users" element={<Users/>} />
-          <Route path="/dashboard/analytics" element={<Analytics/>} />
-          <Route path="/dashboard/resources" element={<Resources />} />
-          <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+          <Route path="/dashboard/emergency-requests" element={<ProtectedRoute><EmergencyRequests /></ProtectedRoute>} />
+          <Route path="/dashboard/shelters" element={<ProtectedRoute><Shelters /></ProtectedRoute>} />
+          <Route path="/dashboard/volunteers" element={<ProtectedRoute><Volunteers /></ProtectedRoute>} />
+          <Route path="/dashboard/legal-aid" element={<ProtectedRoute><LegalAid /></ProtectedRoute>} />
+          <Route path="/dashboard/counseling" element={<ProtectedRoute><Counseling /></ProtectedRoute>} />
+          <Route path="/dashboard/community-reports" element={<ProtectedRoute><CommunityReports /></ProtectedRoute>} />
+          <Route path="/dashboard/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
+          <Route path="/dashboard/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+          <Route path="/dashboard/resources" element={<ProtectedRoute><Resources /></ProtectedRoute>} />
+          <Route path="/dashboard/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+          <Route path="/dashboard/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -4,36 +4,24 @@ import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import logo from "../assets/logo.png";
 import { useAuth } from "../contexts/AuthContext";
 
-const roles = [
-  "Survivor / Individual seeking support",
-  "NGO / Support Organization",
-  "Shelter Administrator",
-  "Legal Professional",
-  "Counselor",
-  "Volunteer",
-];
-
-export function Register() {
+export function Login() {
   const navigate = useNavigate();
-  const { register } = useAuth();
-  const [name, setName] = useState("");
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
-      return;
+    const success = login(email, password);
+    if (success) {
+      navigate("/dashboard");
+    } else {
+      setError("We couldn't find an account with that email on this device. Try registering instead.");
     }
-
-    // Placeholder only — no real backend/account exists yet.
-    register({ name, email, role });
-    navigate("/dashboard");
   };
 
   return (
@@ -56,26 +44,13 @@ export function Register() {
       <main className="flex-1 flex items-center justify-center px-5 sm:px-8 py-8">
         <div className="w-full max-w-md">
           <h1 className="text-2xl font-bold text-dark-gray dark:text-white">
-            Create an account
+            Welcome back
           </h1>
           <p className="mt-1.5 text-sm text-dark-gray/60 dark:text-white/60">
-            For staff, volunteers, and partner organizations.
+            Log in to your SafeHaven Africa account.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-dark-gray dark:text-white mb-1.5">
-                Full name
-              </label>
-              <input
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-lg border border-dark-gray/15 dark:border-white/15 bg-white dark:bg-navy px-4 py-2.5 text-sm text-dark-gray dark:text-white focus:outline-none focus:ring-2 focus:ring-umber dark:focus:ring-gold"
-              />
-            </div>
-
             <div>
               <label className="block text-sm font-medium text-dark-gray dark:text-white mb-1.5">
                 Email
@@ -91,30 +66,12 @@ export function Register() {
 
             <div>
               <label className="block text-sm font-medium text-dark-gray dark:text-white mb-1.5">
-                I am a...
-              </label>
-              <select
-                required
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full rounded-lg border border-dark-gray/15 dark:border-white/15 bg-white dark:bg-navy px-4 py-2.5 text-sm text-dark-gray dark:text-white focus:outline-none focus:ring-2 focus:ring-umber dark:focus:ring-gold"
-              >
-                <option value="" disabled>Select one</option>
-                {roles.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-dark-gray dark:text-white mb-1.5">
                 Password
               </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   required
-                  minLength={8}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full rounded-lg border border-dark-gray/15 dark:border-white/15 bg-white dark:bg-navy px-4 py-2.5 pr-11 text-sm text-dark-gray dark:text-white focus:outline-none focus:ring-2 focus:ring-umber dark:focus:ring-gold"
@@ -128,27 +85,24 @@ export function Register() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
-              <p className="mt-1.5 text-xs text-dark-gray/50 dark:text-white/50">
-                At least 8 characters.
-              </p>
             </div>
 
             {error && (
-              <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              <p className="text-sm text-alert-red">{error}</p>
             )}
 
             <button
               type="submit"
               className="w-full py-3 rounded-lg bg-umber text-white font-semibold hover:bg-umber/90 transition-colors"
             >
-              Create Account
+              Log In
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-dark-gray/60 dark:text-white/60">
-            Already have an account?{" "}
-            <Link to="/login" className="font-semibold text-umber dark:text-gold hover:underline">
-              Log in
+            Don't have an account?{" "}
+            <Link to="/register" className="font-semibold text-umber dark:text-gold hover:underline">
+              Register
             </Link>
           </p>
         </div>

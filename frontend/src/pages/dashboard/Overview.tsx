@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { DashboardLayout } from "../../components/dashboard/DashboardLayout";
+import { motion } from "framer-motion";
 import { SafetyMap } from "../../components/dashboard/SafetyMap";
 import { ShieldAlert, Home, Users, ShieldCheck, Calendar, UserPlus, UserCheck, UserX, PlusCircle, BadgeCheck, Bell, FileText, MessageCircle, BarChart2 } from "lucide-react";
 
@@ -291,15 +292,17 @@ export function Overview() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
           {quickActions.map((action) => (
-            <button
-              key={action.label}
-              onClick={() => action.path && navigate(action.path)}
-              className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-xl border text-xs font-medium transition-all hover:-translate-y-0.5 hover:shadow-md ${
-                action.highlight
-                  ? "border-umber/30 bg-umber/10 text-umber dark:text-gold"
-                  : "border-dark-gray/10 dark:border-white/10 text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5"
-              }`}
-            >
+            <motion.button
+  key={action.label}
+  onClick={() => action.path && navigate(action.path)}
+  whileHover={{ y: -3 }}
+  whileTap={{ scale: 0.96 }}
+  className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-xl border text-xs font-medium transition-shadow hover:shadow-md ${
+    action.highlight
+      ? "border-umber/30 bg-umber/10 text-umber dark:text-gold"
+      : "border-dark-gray/10 dark:border-white/10 text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5"
+  }`}
+>
               <span className={`shrink-0 h-7 w-7 rounded-full flex items-center justify-center ${
                 action.color === "navy" ? "bg-navy text-white" :
                 action.color === "umber" ? "bg-umber text-white" :
@@ -308,8 +311,8 @@ export function Overview() {
               }`}>
                 {action.icon}
               </span>
-              <span className="whitespace-nowrap truncate">{action.label}</span>
-            </button>
+                            <span className="whitespace-nowrap truncate">{action.label}</span>
+            </motion.button>
           ))}
         </div>
       </div>

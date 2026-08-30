@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "../assets/logo.png";
 import { ThemeToggle } from "./ThemeToggle";
@@ -17,7 +18,12 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-charcoal/95 backdrop-blur border-b border-dark-gray/10 dark:border-white/10">
+   <motion.header
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, ease: "easeOut" }}
+  className="sticky top-0 z-50 bg-white/95 dark:bg-charcoal/95 backdrop-blur border-b border-dark-gray/10 dark:border-white/10"
+>
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-20 flex items-center justify-between gap-4">
         <img src={logo} alt="SafeHaven Africa" className="h-11 w-auto" />
 
@@ -29,12 +35,18 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <ThemeToggle />
-          <Link to="/report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
-  <Phone size={15} />
-  Get Help Now
+          <Link to="/login" className="px-4 py-2 rounded-lg border border-dark-gray/20 dark:border-white/20 text-sm font-medium text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5 transition-colors">
+  Log In
 </Link>
+          <Link to="/register" className="px-4 py-2 rounded-lg border border-dark-gray/20 dark:border-white/20 text-sm font-medium text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5 transition-colors">
+            Register
+          </Link>
+          <Link to="/report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+            <Phone size={15} />
+            Get Help Now
+          </Link>
         </div>
 
         <button
@@ -53,15 +65,25 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <div className="flex items-center gap-4 pt-2">
-            <ThemeToggle />
-            <Link to="/report" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold">
-  <Phone size={15} />
-  Get Help Now
-</Link>
+          <div className="flex flex-col gap-3 pt-2">
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <Link to="/login" onClick={() => setOpen(false)} className="flex-1 text-center px-4 py-2 rounded-lg border border-dark-gray/20 dark:border-white/20 text-sm font-medium text-dark-gray dark:text-white">
+                Log In
+              </Link>
+              <Link to="/register" onClick={() => setOpen(false)} className="flex-1 text-center px-4 py-2 rounded-lg border border-dark-gray/20 dark:border-white/20 text-sm font-medium text-dark-gray dark:text-white">
+                Register
+              </Link>
+            </div>
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="inline-block">
+  <Link to="/report" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-umber text-white text-sm font-semibold hover:bg-umber/90 transition-colors">
+    <Phone size={15} />
+    Get Help Now
+  </Link>
+</motion.div>
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }
