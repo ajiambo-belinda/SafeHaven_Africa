@@ -42,7 +42,7 @@ const floatingCards = [
 ];
 
 const paragraphText =
-  "SafeHaven Africa connects survivors of violence and vulnerable communities to trusted support, safe shelters, legal aid, and mental health services across Africa.";
+  "SafeHaven empowers people in crisis to find safe locations, request help, access emergency information, and connect with responders during disasters and humanitarian emergencies.";
 
 export function Hero() {
   const mouseX = useMotionValue(0);

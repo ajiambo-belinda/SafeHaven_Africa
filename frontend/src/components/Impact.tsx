@@ -12,15 +12,19 @@ export function Impact() {
     <section className="bg-dark-gray/5 dark:bg-navy/30 transition-colors">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 lg:py-16 grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-navy dark:text-white">
-            Our Impact
-          </h2>
-          <div className="mt-3 h-1 w-14 rounded-full bg-gold" />
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-4 py-1.5 rounded-full">
+  Our Impact
+</span>
 
-          <p className="mt-5 text-dark-gray/70 dark:text-white/70 leading-relaxed max-w-md">
-            Together, we are building safer communities and changing lives
-            across Africa.
-          </p>
+<h2 className="mt-4 text-3xl lg:text-4xl font-bold">
+  <span className="text-navy dark:text-white">Changing Lives Across </span>
+  <span className="text-gold">Africa</span>
+</h2>
+
+<p className="mt-4 text-black dark:text-white/70 leading-relaxed max-w-md">
+  Together, we are building safer communities — one report answered,
+  one shelter placement, one supported survivor at a time.
+</p>
 
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((stat) => (

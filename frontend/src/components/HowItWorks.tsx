@@ -28,12 +28,22 @@ export function HowItWorks() {
   return (
     <section className="bg-cream dark:bg-charcoal transition-colors">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
-        <div className="text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-navy dark:text-white">
-            How It Works
-          </h2>
-          <div className="mt-3 mx-auto h-1 w-14 rounded-full bg-gold" />
-        </div>
+        <div className="text-center max-w-2xl mx-auto">
+  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-4 py-1.5 rounded-full">
+    How It Works
+  </span>
+
+  <h2 className="mt-4 text-3xl lg:text-4xl font-bold">
+    <span className="text-navy dark:text-white">Your Path to Safety in </span>
+    <span className="text-gold">3 Simple Steps</span>
+  </h2>
+
+  <p className="mt-4 text-dark-gray/70 dark:text-white/70 leading-relaxed">
+    No complicated forms, no waiting rooms. Reaching out, getting matched
+    with the right support, and receiving real help — all in one guided
+    process.
+  </p>
+</div>
 
         <div className="mt-12 flex flex-col lg:flex-row items-start gap-8 lg:gap-3">
           {steps.map((step, index) => (
