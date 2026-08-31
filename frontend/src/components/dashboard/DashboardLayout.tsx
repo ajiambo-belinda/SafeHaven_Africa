@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import heroPhoto from "../../assets/map.png";
+import { useAuth } from "../../contexts/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, ShieldAlert, Home, Scale, HeartHandshake, Users,
@@ -135,7 +136,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     className="flex items-center gap-2.5"
   >
     <div className="h-9 w-9 rounded-full bg-umber/20 text-umber dark:text-gold flex items-center justify-center text-sm font-semibold">
-      {user?.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase() || "U"}
+      {user?.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2).toUpperCase() || "U"}
     </div>
     <div className="hidden sm:block text-left">
       <p className="text-sm font-semibold text-dark-gray dark:text-white leading-tight">{user?.name || "User"}</p>
