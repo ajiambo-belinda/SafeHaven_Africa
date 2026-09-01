@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaTiktok } from "react-icons/fa6";
 import logo from "../assets/logo.png";
@@ -25,7 +26,13 @@ export function Footer() {
     <footer id="contact" className="bg-navy text-white/70">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-1">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="lg:col-span-1"
+          >
             <img src={logo} alt="SafeHaven Africa" className="h-10 w-auto" />
             <p className="mt-4 text-sm leading-relaxed max-w-xs">
               A safe place. A stronger future. You are not alone.
@@ -37,29 +44,37 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {columns.map((col) => (
-            <div key={col.title}>
+          {columns.map((col, index) => (
+            <motion.div
+              key={col.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease: "easeOut" }}
+            >
               <h4 className="text-sm font-semibold text-white mb-4">
                 {col.title}
               </h4>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
-                    
-                      <a href={col.title === "Support" ? "#services" : "#"}
-                      className="text-sm hover:text-white transition-colors"
-                    >
+                    <a href={col.title === "Support" ? "#services" : "#"} className="text-sm hover:text-white transition-colors">
                       {link}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          >
             <h4 className="text-sm font-semibold text-white mb-4">Get In Touch</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
@@ -79,7 +94,7 @@ export function Footer() {
               <Phone size={14} />
               Get Help Now
             </Link>
-          </div>
+          </motion.div>
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10 text-center text-xs text-white/40">

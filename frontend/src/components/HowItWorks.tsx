@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FileEdit, Users, HeartHandshake, ArrowRight } from "lucide-react";
 
 const steps = [
@@ -26,28 +27,41 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="bg-cream dark:bg-charcoal transition-colors">
+    <section id="howitworks" className="bg-cream dark:bg-charcoal transition-colors">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
-        <div className="text-center max-w-2xl mx-auto">
-  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-4 py-1.5 rounded-full">
-    How It Works
-  </span>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-2xl mx-auto"
+        >
+          <span className="inline-block text-xs font-semibold uppercase tracking-wider text-umber dark:text-gold bg-umber/10 dark:bg-gold/10 px-4 py-1.5 rounded-full">
+            How It Works
+          </span>
 
-  <h2 className="mt-4 text-3xl lg:text-4xl font-bold">
-    <span className="text-navy dark:text-white">Your Path to Safety in </span>
-    <span className="text-gold">3 Simple Steps</span>
-  </h2>
+          <h2 className="mt-4 text-3xl lg:text-4xl font-bold">
+            <span className="text-navy dark:text-white">Your Path to Safety in </span>
+            <span className="text-gold">3 Simple Steps</span>
+          </h2>
 
-  <p className="mt-4 text-dark-gray/70 dark:text-white/70 leading-relaxed">
-    No complicated forms, no waiting rooms. Reaching out, getting matched
-    with the right support, and receiving real help — all in one guided
-    process.
-  </p>
-</div>
+          <p className="mt-4 text-dark-gray/70 dark:text-white/70 leading-relaxed">
+            No complicated forms, no waiting rooms. Reaching out, getting matched
+            with the right support, and receiving real help — all in one guided
+            process.
+          </p>
+        </motion.div>
 
         <div className="mt-12 flex flex-col lg:flex-row items-start gap-8 lg:gap-3">
           {steps.map((step, index) => (
-            <div key={step.number} className="flex items-center gap-3 lg:flex-1">
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+              className="flex items-center gap-3 lg:flex-1"
+            >
               <div className="flex items-start gap-4">
                 <div className="relative shrink-0">
                   <div className={`h-14 w-14 rounded-full flex items-center justify-center ${
@@ -74,7 +88,7 @@ export function HowItWorks() {
               {index < steps.length - 1 && (
                 <ArrowRight className="hidden lg:block text-dark-gray/30 dark:text-white/30 shrink-0 mx-2" size={20} />
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

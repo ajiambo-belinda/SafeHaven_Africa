@@ -9,9 +9,10 @@ const links = [
   { label: "Home", href: "#hero" },
   { label: "About Us", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "How It Works", href: "howitworks" },
+  { label: "How It Works", href: "#howitworks" },
   { label: "Our Impact", href: "#ourimpact" },
   { label: "Contact Us", href: "#contact" },
+  
 
 ];
 

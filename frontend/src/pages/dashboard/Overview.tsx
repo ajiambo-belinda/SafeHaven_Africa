@@ -87,7 +87,12 @@ export function Overview() {
 
   return (
     <DashboardLayout>
-      <div className="grid lg:grid-cols-[1fr_auto] gap-6 items-start">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="grid lg:grid-cols-[1fr_auto] gap-6 items-start"
+      >
         <div>
           <h1 className="text-2xl font-bold text-dark-gray dark:text-white">
             Welcome back, Belinda Ajiambo 👋
@@ -102,9 +107,12 @@ export function Overview() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex gap-4">
-          {stats.map((stat) => (
-            <div
+          {stats.map((stat, index) => (
+            <motion.div
               key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 + index * 0.08, ease: "easeOut" }}
               className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-4 w-full lg:w-40"
             >
               <div className={`h-9 w-9 rounded-full flex items-center justify-center ${
@@ -123,13 +131,19 @@ export function Overview() {
               <p className="mt-1.5 text-xs font-medium text-success-green">
                 ↑ {stat.change} from yesterday
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       <div className="mt-6 grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="lg:col-span-2 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+        >
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-dark-gray dark:text-white">
               Safety Map Overview
@@ -137,9 +151,15 @@ export function Overview() {
             <span className="text-xs text-dark-gray/40 dark:text-white/40">All Regions</span>
           </div>
           <SafetyMap />
-        </div>
+        </motion.div>
 
-        <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+        >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="font-semibold text-sm text-dark-gray dark:text-white leading-snug">
               Recent Emergency Requests
@@ -180,13 +200,19 @@ export function Overview() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="mt-6 grid lg:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+        >
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-dark-grey dark:text-white">
+            <h2 className="font-semibold text-dark-gray dark:text-white">
               Shelter Availability
             </h2>
             <a href="#" className="text-sm font-medium text-umber dark:text-gold hover:underline">
@@ -216,9 +242,15 @@ export function Overview() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+        >
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-dark-gray dark:text-white">
               Reports This Week
@@ -257,9 +289,15 @@ export function Overview() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          className="bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+        >
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-dark-gray dark:text-white">
               Volunteer Activity
@@ -283,26 +321,32 @@ export function Overview() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="mt-6 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="mt-6 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 p-6"
+      >
         <h2 className="font-semibold text-dark-gray dark:text-white mb-4">
           Quick Actions
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
           {quickActions.map((action) => (
             <motion.button
-  key={action.label}
-  onClick={() => action.path && navigate(action.path)}
-  whileHover={{ y: -3 }}
-  whileTap={{ scale: 0.96 }}
-  className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-xl border text-xs font-medium transition-shadow hover:shadow-md ${
-    action.highlight
-      ? "border-umber/30 bg-umber/10 text-umber dark:text-gold"
-      : "border-dark-gray/10 dark:border-white/10 text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5"
-  }`}
->
+              key={action.label}
+              onClick={() => action.path && navigate(action.path)}
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.96 }}
+              className={`flex items-center justify-center gap-2 py-3.5 px-3 rounded-xl border text-xs font-medium transition-shadow hover:shadow-md ${
+                action.highlight
+                  ? "border-umber/30 bg-umber/10 text-umber dark:text-gold"
+                  : "border-dark-gray/10 dark:border-white/10 text-dark-gray dark:text-white hover:bg-dark-gray/5 dark:hover:bg-white/5"
+              }`}
+            >
               <span className={`shrink-0 h-7 w-7 rounded-full flex items-center justify-center ${
                 action.color === "navy" ? "bg-navy text-white" :
                 action.color === "umber" ? "bg-umber text-white" :
@@ -311,11 +355,11 @@ export function Overview() {
               }`}>
                 {action.icon}
               </span>
-                            <span className="whitespace-nowrap truncate">{action.label}</span>
+              <span className="whitespace-nowrap truncate">{action.label}</span>
             </motion.button>
           ))}
         </div>
-      </div>
+      </motion.div>
     </DashboardLayout>
   );
 }
