@@ -86,6 +86,12 @@ export function Messages() {
         Messages
       </h1>
 
+      <p className="mt-1.5 text-sm text-dark-gray/70 dark:text-white/70 max-w-2xl leading-relaxed">
+          Direct communication with legal professionals, counselors, shelter staff,
+  and volunteers across the network — all in one place, so nothing gets
+  lost between teams.
+        </p>
+
       <div className="grid lg:grid-cols-[320px_1fr] gap-5 bg-white dark:bg-navy rounded-2xl border border-dark-gray/10 dark:border-white/10 overflow-hidden" style={{ height: "600px" }}>
         <div className="border-r border-dark-gray/10 dark:border-white/10 flex flex-col">
           <div className="p-4 border-b border-dark-gray/10 dark:border-white/10">
