@@ -6,6 +6,7 @@ import { About } from "../components/About";
 import { HowItWorks } from "../components/HowItWorks";
 import { Impact } from "../components/Impact";
 import { Footer } from "../components/Footer";
+import { ChatWidget } from "../components/ChatWidget";
 
 export function Home() {
   return (
@@ -18,6 +19,7 @@ export function Home() {
       <HowItWorks />
       <Impact />
       <Footer />
+      <ChatWidget />
     </>
   );
 }
